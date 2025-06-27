@@ -1,0 +1,13 @@
+<div class="horse">
+  <div>
+    <%= horse.name %> — Breed: <%= horse.breed %> — Age: <%= horse.age %> — <%=
+    horse.type %> — Rider: <%= horse.rider %>
+  </div>
+  <div class="image-container">
+    <img src="<%= horse.image_url %>" alt="<%= horse.name %>" />
+  </div>
+  <div class="action-container">
+    <button><a>Edit Horse</a></button>
+    <button><a>Delete Horse</a></button>
+  </div>
+</div>
