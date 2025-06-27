@@ -3,6 +3,8 @@ const {
   getAllHorses,
   filterHorses,
   addHorse,
+  deleteHorse,
+  confirmDeleteHorse,
 } = require("../controllers/horseController");
 const indexRouter = Router();
 
@@ -16,6 +18,7 @@ indexRouter.get("/add", (req, res) => {
 
 indexRouter.post("/add", addHorse);
 
-//indexRouter.get("/horse/:id", getHorseById);
+indexRouter.get("/delete/:id", deleteHorse);
+indexRouter.post("/delete/:id", confirmDeleteHorse);
 
 module.exports = indexRouter;
