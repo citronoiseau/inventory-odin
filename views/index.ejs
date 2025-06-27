@@ -6,13 +6,13 @@
   <body>
     <h1><%= title %></h1>
     <h2>Horses</h2>
-    <%- include('breeds', { breeds }) %> <%- include('riders', { riders }) %>
+    <%- include('searchbar', { breeds, riders, types }) %>
+    <div>
+      <button><a href="/add">Add a new horse</a></button>
+    </div>
     <div class="horses-container">
       <% horses.forEach((horse) => { %> <%- include('horses/horse', { horse:
       horse}) %> <% }); %>
     </div>
-    <a href="/new">
-      <button>Add new horse</button>
-    </a>
   </body>
 </html>

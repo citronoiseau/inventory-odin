@@ -1,0 +1,37 @@
+<div class="breeds-container">
+  <div>Check out our breeds:</div>
+  <div class="breeds-list">
+    <% if (!breeds || breeds.length === 0) { %>
+    <p>No breeds found.</p>
+    <% } else { %> <% breeds.forEach((breed) => { %>
+    <a href="/filter/breeds/<%= breed.id %>"><%= breed.name %></a>
+    <% }); %> <% } %>
+
+    <button><a href="/breeds/edit">Edit Breeds</a></button>
+    <button><a href="/breeds/add">Add new breed</a></button>
+  </div>
+</div>
+
+<div class="riders-container">
+  <div>Check out our riders:</div>
+  <div class="riders-list">
+    <% if (!riders || riders.length === 0) { %>
+    <p>No riders found.</p>
+    <% } else { %> <% riders.forEach((rider) => { %>
+    <a href="/filter/riders/<%= rider.id %>"><%= rider.name %></a>
+    <% }); %> <% } %>
+    <button><a href="/riders/edit">Edit Riders</a></button>
+    <button><a href="/riders/add">Add new rider</a></button>
+  </div>
+</div>
+
+<div class="types-container">
+  <div>You can also filter by types:</div>
+  <div class="types-list">
+    <% if (!types || types.length === 0) { %>
+    <p>No types found.</p>
+    <% } else { %> <% types.forEach((type) => { %>
+    <a href="/filter/types/<%= type.id %>"><%= type.name %></a>
+    <% }); %> <% } %>
+  </div>
+</div>
