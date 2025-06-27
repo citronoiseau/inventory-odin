@@ -1,0 +1,15 @@
+<html>
+  <head>
+    <title>Filtered</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <%- include('breeds', { breeds }) %> <%- include('riders', { riders }) %>
+    <div class="horses-container">
+      <% horses.forEach((horse) => { %> <%- include('horses/horse', { horse:
+      horse}) %> <% }); %>
+    </div>
+    <a href="/">Go back</a>
+  </body>
+</html>
