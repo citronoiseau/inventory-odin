@@ -1,13 +1,18 @@
 const { Router } = require("express");
-const { getAllHorses, addHorse } = require("../controllers/horseController");
-const { filterHorsesByBreed } = require("../controllers/breedsController");
-const { filterHorsesByRider } = require("../controllers/ridersController");
+const {
+  getAllHorses,
+  filterHorses,
+  addHorse,
+} = require("../controllers/horseController");
 const indexRouter = Router();
 
 indexRouter.get("/", getAllHorses);
 
-indexRouter.get("/filter/breeds/:id", filterHorsesByBreed);
-indexRouter.get("/filter/riders/:id", filterHorsesByRider);
+indexRouter.get("/filter/:type/:id", filterHorses);
+
+indexRouter.get("/add", (req, res) => {
+  res.render("form", { title: "Add new horse" });
+});
 
 indexRouter.post("/add", addHorse);
 
