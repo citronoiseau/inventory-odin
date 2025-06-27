@@ -18,6 +18,28 @@ async function getAllHorses() {
   return rows;
 }
 
+async function getHorseById(id) {
+  const { rows } = await pool.query(
+    `
+    SELECT 
+      horses.id,
+      horses.name,
+      breeds.name AS breed,
+      types.name AS type,
+      horses.age,
+      riders.name AS rider,
+      horses.image_url,
+      horses.admin_created
+    FROM horses
+    JOIN breeds ON horses.breed_id = breeds.id
+    JOIN types ON horses.type_id = types.id
+    JOIN riders ON horses.rider_id = riders.id
+    WHERE horses.id = $1
+    `,
+    [id]
+  );
+  return rows[0];
+}
 async function getAllFromTable(tableName) {
   const query = `SELECT id, name FROM ${tableName} ORDER BY name ASC`;
   const { rows } = await pool.query(query);
@@ -68,9 +90,15 @@ async function addHorse(name, breed_id, type_id, age, rider_id, image_url) {
   );
 }
 
+async function deleteHorse(id, passcode = null) {
+  await pool.query(`DELETE FROM horses WHERE id = $1`, [id]);
+}
+
 module.exports = {
   getAllHorses,
+  getHorseById,
   getAllFromTable,
   filterHorsesBy,
   addHorse,
+  deleteHorse,
 };
