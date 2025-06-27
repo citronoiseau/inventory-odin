@@ -1,7 +1,10 @@
 const express = require("express");
 
-const { loadBreeds } = require("./controllers/breedsController");
-const { loadRiders } = require("./controllers/ridersController");
+const {
+  loadBreeds,
+  loadRiders,
+  loadTypes,
+} = require("./controllers/loadController");
 
 const app = express();
 const path = require("node:path");
@@ -14,6 +17,7 @@ const indexRouter = require("./routes/indexRouter");
 
 app.use(loadBreeds);
 app.use(loadRiders);
+app.use(loadTypes);
 app.use("/", indexRouter);
 
 const PORT = process.env.PORT || 3000;
