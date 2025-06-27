@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <title>Homepage</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <h2>Horses</h2>
+    <%- include('breeds', { breeds }) %> <%- include('riders', { riders }) %>
+    <div class="horses-container">
+      <% horses.forEach((horse) => { %> <%- include('horses/horse', { horse:
+      horse}) %> <% }); %>
+    </div>
+    <a href="/new">
+      <button>Add new horse</button>
+    </a>
+  </body>
+</html>
