@@ -1,0 +1,11 @@
+<div class="riders-container">
+  <div>Check out our riders:</div>
+  <div class="riders-list">
+    <% if (!riders || riders.length === 0) { %>
+    <p>No riders found.</p>
+    <% } else { %> <% riders.forEach((rider) => { %>
+    <a href="/filter/riders/<%= rider.id %>"><%= rider.name %></a>
+    <% }); %> <% } %>
+    <button><a href="/breeds/edit">Edit Riders</a></button>
+  </div>
+</div>
