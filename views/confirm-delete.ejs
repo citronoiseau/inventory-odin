@@ -1,0 +1,7 @@
+<h1>Confirm delete for <%= horse.name %></h1>
+<form action="/delete/<%= horse.id %>" method="POST">
+  <label for="passcode">Admin passcode:</label>
+  <input type="password" id="passcode" name="passcode" required />
+  <button type="submit">Confirm Delete</button>
+</form>
+<a href="/">Cancel</a>
