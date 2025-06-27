@@ -7,7 +7,13 @@
     <img src="<%= horse.image_url %>" alt="<%= horse.name %>" />
   </div>
   <div class="action-container">
-    <button><a>Edit Horse</a></button>
-    <button><a>Delete Horse</a></button>
+    <a>Edit Horse</a>
+    <form
+      action="/delete/<%= horse.id %>"
+      method="GET"
+      onsubmit="return confirm('Delete this horse?')"
+    >
+      <button type="submit">Delete Horse</button>
+    </form>
   </div>
 </div>
