@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <title>New horse</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <a href="/"><button>Go back</button></a>
+    <form method="POST" action="/add">
+      <h2>Horse Form</h2>
+      <div class="form-input">
+        <label for="name">Name (2 to 15 characters):</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          required
+          minlength="2"
+          maxlength="15"
+        />
+      </div>
+
+      <div class="form-input">
+        <label for="breed_id">Choose the breed:</label>
+        <select name="breed_id" id="breed_id" required>
+          <option value="">Select a breed</option>
+          <% breeds.forEach((breed) => { %>
+          <option value="<%= breed.id %>"><%= breed.name %></option>
+          <% }); %>
+        </select>
+      </div>
+
+      <div class="form-input">
+        <label for="type_id">Choose the type:</label>
+        <select name="type_id" id="type_id" required>
+          <option value="">Select a type</option>
+          <% types.forEach((type) => { %>
+          <option value="<%= type.id %>"><%= type.name %></option>
+          <% }); %>
+        </select>
+      </div>
+
+      <div class="form-input">
+        <label for="age">Enter age:</label>
+        <input type="number" id="age" name="age" required min="3" max="50" />
+      </div>
+
+      <div class="rider-input">
+        <label for="rider_id">Choose the rider:</label>
+        <select name="rider_id" id="rider_id" required>
+          <option value="">Select the rider</option>
+          <% riders.forEach((rider) => { %>
+          <option value="<%= rider.id %>"><%= rider.name %></option>
+          <% }); %>
+        </select>
+      </div>
+
+      <div class="form-input">
+        <label for="image">Enter url for your image:</label>
+        <input type="url" id="image_url" name="image_url" required />
+      </div>
+
+      <input type="submit" value="Add horse" />
+    </form>
+  </body>
+</html>
