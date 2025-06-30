@@ -1,5 +1,5 @@
 const asyncHandler = require("express-async-handler");
-const db = require("../db/queries");
+const db = require("../db/queries/horse-queries");
 
 function createLoader(name) {
   return asyncHandler(async (req, res, next) => {
