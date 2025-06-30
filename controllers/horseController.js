@@ -1,7 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const { body, validationResult } = require("express-validator");
 const CustomNotFoundError = require("../errors/CustomNotFoundError");
-const db = require("../db/queries");
+const db = require("../db/queries/horse-queries");
 
 const validateHorse = [
   body("name")
@@ -59,35 +59,22 @@ const filterHorses = asyncHandler(async (req, res) => {
 
 const deleteHorse = asyncHandler(async (req, res) => {
   const { id } = req.params;
+  const { passcode } = req.body; 
+
   const horse = await db.getHorseById(id);
   if (!horse) {
     return res.status(404).send("Horse not found");
   }
 
   if (horse.admin_created) {
-    return res.render("horses/confirm-delete", { horse });
-  } else {
-    await db.deleteHorse(id);
-    return res.redirect("/");
-  }
-});
-
-const confirmDeleteHorse = asyncHandler(async (req, res) => {
-  const { id } = req.params;
-  const { passcode } = req.body;
-
-  const horse = await db.getHorseById(id);
-  if (!horse) {
-    return res.status(404).send("Horse not found");
-  }
-
-  const correctPasscode = process.env.ADMIN_PASSCODE;
-  if (!passcode || passcode !== correctPasscode) {
-    return res.status(403).send("Invalid passcode");
+    const correctPasscode = process.env.ADMIN_PASSCODE;
+    if (!passcode || passcode !== correctPasscode) {
+      return res.status(403).send("Invalid or missing passcode");
+    }
   }
 
   await db.deleteHorse(id);
-  res.redirect("/");
+  return res.redirect("/");
 });
 
 const addHorse = [
@@ -163,7 +150,6 @@ module.exports = {
   getAllHorses,
   filterHorses,
   deleteHorse,
-  confirmDeleteHorse,
   addHorse,
   editHorse,
   confirmEditHorse

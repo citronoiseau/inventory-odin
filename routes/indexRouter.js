@@ -20,8 +20,7 @@ indexRouter.get("/horse/add", (req, res) => {
 });
 indexRouter.post("/horse/add", addHorse);
 
-indexRouter.get("/horse/:id/delete", deleteHorse);
-indexRouter.post("/horse/:id/delete", confirmDeleteHorse);
+indexRouter.post("/horse/:id/delete", deleteHorse); 
 
 indexRouter.get("/horse/:id/edit", editHorse);
 indexRouter.post("/horse/:id/edit", confirmEditHorse);

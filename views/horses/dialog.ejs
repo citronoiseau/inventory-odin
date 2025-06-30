@@ -1,0 +1,35 @@
+<dialog id="delete-dialog">
+  <form method="POST" id="delete-form">
+    <h2>Confirm Delete</h2>
+    <label for="passcode">Admin passcode:</label>
+    <input type="password" id="passcode" name="passcode" required />
+    <button value="cancel" type="reset" id="cancel-button">Cancel</button>
+    <button type="submit">Confirm Delete</button>
+  </form>
+</dialog>
+
+<script>
+  const dialog = document.getElementById("delete-dialog");
+  const closeButton = dialog.querySelector("#cancel-button");
+
+  document.querySelectorAll(".delete-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const horseId = btn.dataset.horseId;
+      const horseName = btn.dataset.horseName;
+      const form = dialog.querySelector("#delete-form");
+      form.action = `/horse/${horseId}/delete`;
+
+      dialog.querySelector("h2").textContent = `Confirm delete for ${horseName}`;
+
+      dialog.showModal();
+    });
+  });
+
+  closeButton.addEventListener("click", () => {
+    dialog.close();
+  });
+
+  dialog.addEventListener("cancel", () => {
+    dialog.close();
+  });
+</script>

@@ -1,23 +1,21 @@
 <div class="horse">
   <div>
-    <%= horse.name %> — Breed: <%= horse.breed %> — Age: <%= horse.age %> — Rider: <%= horse.rider %>
+    <%= horse.name %> — Breed: <%= horse.breed %> — Age: <%= horse.age %> —
+    Rider: <%= horse.rider %>
   </div>
   <div class="image-container">
     <img src="<%= horse.image_url %>" alt="<%= horse.name %>" />
   </div>
   <div class="action-container">
-      <form
-      action="horse/<%= horse.id %>/edit"
-      method="GET"
-    >
+    <form method="GET">
       <button type="submit">Edit Horse</button>
     </form>
-    <form
-      action="horse/<%= horse.id %>/delete"
-      method="GET"
-      onsubmit="return confirm('Delete this horse?')"
+    <button
+      class="delete-btn"
+      data-horse-id="<%= horse.id %>"
+      data-horse-name="<%= horse.name %>"
     >
-      <button type="submit">Delete Horse</button>
-    </form>
+      Delete Horse
+    </button>
   </div>
 </div>
