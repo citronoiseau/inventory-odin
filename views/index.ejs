@@ -15,6 +15,7 @@
       <% horses.forEach((horse) => { %> <%- include('horses/horse', { horse:
       horse}) %> <% }); %>
     </div>
-        <%- include('horses/dialog.ejs') %>
+        <%- include('horses/delete-dialog.ejs') %>
+        <%- include('horses/edit-dialog.ejs') %>
   </body>
 </html>
