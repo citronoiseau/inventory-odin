@@ -63,13 +63,6 @@
     />
   </div>
 
-    <% if (horse && horse.admin_created) { %>
-    <div class="form-input">
-      <label for="passcode">Admin Passcode (required to edit):</label>
-      <input type="password" id="passcode" name="passcode" required />
-    </div>
-  <% } %>
-
       <input type="submit" value="<%= horse ? 'Edit Horse' : 'Add Horse' %>" />
     </form>
   </body>
