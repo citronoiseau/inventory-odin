@@ -10,6 +10,11 @@ async function addBreed(name) {
   );
 }
 
+async function deleteBreed(id) {
+  await pool.query(`DELETE FROM breeds WHERE id = $1`, [id]);
+}
+
 module.exports = {
-  addBreed
+  addBreed,
+  deleteBreed,
 };
