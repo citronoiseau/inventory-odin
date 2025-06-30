@@ -9,7 +9,7 @@
     <%- include('filters/breeds.ejs', { breeds }) %>
      <%- include('filters/riders.ejs', { riders }) %>
     <div>
-      <button><a href="/add">Add a new horse</a></button>
+      <button><a href="/horse/add">Add a new horse</a></button>
     </div>
     <div class="horses-container">
       <% horses.forEach((horse) => { %> <%- include('horses/horse', { horse:

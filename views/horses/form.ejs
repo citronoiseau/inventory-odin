@@ -1,0 +1,76 @@
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <a href="/"><button>Go back</button></a>
+    <form method="POST" action="<%= horse ? `/horse/${horse.id}/edit` : '/horse/add' %>">
+      <h2>Horse Form</h2>
+      <div class="form-input">
+        <label for="name">Name (2 to 15 characters):</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          required
+          minlength="2"
+          maxlength="15"
+          value="<%= horse ? horse.name : '' %>"
+        />
+      </div>
+
+   <div class="form-input">
+    <label for="breed_id">Choose the breed:</label>
+    <select name="breed_id" id="breed_id" required>
+      <option value="">Select a breed</option>
+      <% breeds.forEach((breed) => { %>
+        <option value="<%= breed.id %>" <%= horse && horse.breed_id == breed.id ? 'selected' : '' %>>
+          <%= breed.name %>
+        </option>
+      <% }); %>
+    </select>
+  </div>
+
+      <div class="form-input">
+        <label for="age">Enter age:</label>
+        <input type="number" id="age" name="age" required min="3" max="50"  value="<%= horse ? horse.age : '' %>" />
+        
+      </div>
+
+  <div class="form-input">
+    <label for="rider_id">Choose the rider:</label>
+    <select name="rider_id" id="rider_id" required>
+      <option value="">Select the rider</option>
+      <% riders.forEach((rider) => { %>
+        <option value="<%= rider.id %>" <%= horse && horse.rider_id == rider.id ? 'selected' : '' %>>
+          <%= rider.name %>
+        </option>
+      <% }); %>
+    </select>
+  </div>
+
+
+      <div class="form-input">
+    <label for="image_url">Enter URL for your image:</label>
+    <input
+      type="url"
+      id="image_url"
+      name="image_url"
+      required
+      value="<%= horse ? horse.image_url : '' %>"
+    />
+  </div>
+
+    <% if (horse && horse.admin_created) { %>
+    <div class="form-input">
+      <label for="passcode">Admin Passcode (required to edit):</label>
+      <input type="password" id="passcode" name="passcode" required />
+    </div>
+  <% } %>
+
+      <input type="submit" value="<%= horse ? 'Edit Horse' : 'Add Horse' %>" />
+    </form>
+  </body>
+</html>
