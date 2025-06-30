@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <title>New horse</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <a href="/"><button>Go back</button></a>
+    <form method="POST" action="/add">
+      <h2>Horse Form</h2>
+      <div class="form-input">
+        <label for="name">Breed Name (2 to 15 characters):</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          required
+          minlength="2"
+          maxlength="15"
+        />
+      </div>
+      <input type="submit" value="Add breed" />
+    </form>
+  </body>
+</html>
