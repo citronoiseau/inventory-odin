@@ -4,7 +4,7 @@ const {
   filterHorses,
   addHorse,
   deleteHorse,
-  confirmDeleteHorse,
+  authEditHorse,
   editHorse,
   confirmEditHorse,
 } = require("../controllers/horseController");
@@ -22,8 +22,10 @@ indexRouter.post("/horse/add", addHorse);
 
 indexRouter.post("/horse/:id/delete", deleteHorse); 
 
-indexRouter.get("/horse/:id/edit", editHorse);
-indexRouter.post("/horse/:id/edit", confirmEditHorse);
+indexRouter.post("/horse/:id/edit-auth", authEditHorse);
+indexRouter.get("/horse/:id/edit", editHorse);          
+indexRouter.post("/horse/:id/edit", confirmEditHorse);  
+
 
 //Manipulating breeds
 

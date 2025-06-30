@@ -6,12 +6,22 @@
   <div class="image-container">
     <img src="<%= horse.image_url %>" alt="<%= horse.name %>" />
   </div>
-<div class="action-container">
-  <form action="/horse/<%= horse.id %>/edit" method="GET">
-    <button type="submit">Edit Horse</button>
-  </form>
+  <div class="action-container">
 
-  <% if (horse.admin_created) { %>
+    <% if (horse.admin_created) { %>
+    <button
+      class="edit-btn-admin"
+      data-horse-id="<%= horse.id %>"
+      data-horse-name="<%= horse.name %>"
+    >
+      Edit (Admin)
+    </button>
+    <% } else { %>
+    <form action="/horse/<%= horse.id %>/edit" method="GET">
+      <button type="submit">Edit </button>
+    </form>
+
+    <% } %> <% if (horse.admin_created) { %>
     <button
       class="delete-btn-admin"
       data-horse-id="<%= horse.id %>"
@@ -19,14 +29,14 @@
     >
       Delete (Admin)
     </button>
-  <% } else { %>
+    <% } else { %>
     <form
       action="/horse/<%= horse.id %>/delete"
       method="POST"
       onsubmit="return confirm('Delete this horse?')"
     >
-      <button type="submit">Delete </button>
+      <button type="submit">Delete</button>
     </form>
-  <% } %>
-</div>
+    <% } %>
+  </div>
 </div>

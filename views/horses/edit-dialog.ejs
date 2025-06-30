@@ -1,0 +1,35 @@
+<dialog id="edit-dialog">
+  <form method="POST" id="edit-form">
+    <h2>Confirm Edit</h2>
+    <label for="edit-passcode">Admin passcode:</label>
+    <input type="password" id="edit-passcode" name="passcode" required />
+    <button type="button" id="cancel-edit-button">Cancel</button>
+    <button type="submit">Continue</button>
+  </form>
+</dialog>
+
+<script>
+  const editDialog = document.getElementById("edit-dialog");
+  const closeEditButton = document.getElementById("cancel-edit-button");
+
+  document.querySelectorAll(".edit-btn-admin").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const horseId = btn.dataset.horseId;
+      const horseName = btn.dataset.horseName;
+
+      const form = editDialog.querySelector("#edit-form");
+      form.action = `/horse/${horseId}/edit-auth`;
+
+      editDialog.querySelector("h2").textContent = `Edit: ${horseName}`;
+      editDialog.showModal();
+    });
+  });
+
+  closeEditButton.addEventListener("click", () => {
+    editDialog.close();
+  });
+
+  editDialog.addEventListener("cancel", () => {
+    editDialog.close();
+  });
+</script>

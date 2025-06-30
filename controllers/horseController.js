@@ -100,6 +100,27 @@ const addHorse = [
   },
 ];
 
+const authEditHorse = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const { passcode } = req.body;
+
+  const horse = await db.getHorseById(id);
+  if (!horse) {
+    return res.status(404).send("Horse not found");
+  }
+
+  if (!horse.admin_created) {
+   return res.render("horses/form", { title: "Edit Horse", horse });
+  }
+
+  const correctPasscode = process.env.ADMIN_PASSCODE;
+  if (!passcode || passcode !== correctPasscode) {
+    return res.status(403).send("Invalid passcode");
+  }
+  return res.render("horses/form", { title: "Edit Horse", horse });
+});
+
+
 const editHorse = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const horse = await db.getHorseById(id);
@@ -107,7 +128,9 @@ const editHorse = asyncHandler(async (req, res) => {
     return res.status(404).send("Horse not found");
   }
 
-  res.render("horses/form", { title: "Edit Horse", horse });
+  if (!horse.admin_created) {
+    return res.render("horses/form", { title: "Edit Horse", horse });
+  }
 });
 
 const confirmEditHorse = [
@@ -119,18 +142,11 @@ const confirmEditHorse = [
       return res.status(400).json({ errors: errors.array() });
     }
     const { id } = req.params;
-    const { name, breed_id, age, rider_id, image_url, passcode } = req.body;
+    const { name, breed_id, age, rider_id, image_url } = req.body;
 
       const horse = await db.getHorseById(id);
     if (!horse) {
       return res.status(404).send("Horse not found");
-    }
-
-    if (horse.admin_created) {
-      const correctPasscode = process.env.ADMIN_PASSCODE;
-      if (!passcode || passcode !== correctPasscode) {
-        return res.status(403).send("Invalid passcode");
-      }
     }
 
     await db.editHorse(
@@ -152,5 +168,6 @@ module.exports = {
   deleteHorse,
   addHorse,
   editHorse,
-  confirmEditHorse
+  confirmEditHorse,
+  authEditHorse
 };
