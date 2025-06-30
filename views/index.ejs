@@ -6,7 +6,8 @@
   <body>
     <h1><%= title %></h1>
     <h2>Horses</h2>
-    <%- include('searchbar', { breeds, riders, types }) %>
+    <%- include('filters/breeds.ejs', { breeds }) %>
+     <%- include('filters/riders.ejs', { riders }) %>
     <div>
       <button><a href="/add">Add a new horse</a></button>
     </div>
