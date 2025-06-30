@@ -11,6 +11,5 @@ function createLoader(name) {
 
 const loadRiders = createLoader("riders");
 const loadBreeds = createLoader("breeds");
-const loadTypes = createLoader("types");
 
-module.exports = { loadRiders, loadBreeds, loadTypes };
+module.exports = { loadRiders, loadBreeds};

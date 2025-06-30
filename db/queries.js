@@ -6,13 +6,11 @@ async function getAllHorses() {
       horses.id,
       horses.name,
       breeds.name AS breed,
-      types.name AS type,
       horses.age,
       riders.name AS rider,
       horses.image_url
     FROM horses
     JOIN breeds ON horses.breed_id = breeds.id
-    JOIN types ON horses.type_id = types.id
     JOIN riders ON horses.rider_id = riders.id
   `);
   return rows;
@@ -25,14 +23,12 @@ async function getHorseById(id) {
       horses.id,
       horses.name,
       breeds.name AS breed,
-      types.name AS type,
       horses.age,
       riders.name AS rider,
       horses.image_url,
       horses.admin_created
     FROM horses
     JOIN breeds ON horses.breed_id = breeds.id
-    JOIN types ON horses.type_id = types.id
     JOIN riders ON horses.rider_id = riders.id
     WHERE horses.id = $1
     `,
@@ -50,7 +46,6 @@ async function filterHorsesBy(column, id) {
   const allowedColumns = {
     breed: "horses.breed_id",
     rider: "horses.rider_id",
-    type: "horses.type_id",
   };
 
   const columnName = allowedColumns[column];
@@ -64,13 +59,11 @@ async function filterHorsesBy(column, id) {
       horses.id,
       horses.name,
       breeds.name AS breed,
-      types.name AS type,
       horses.age,
       riders.name AS rider,
       horses.image_url
     FROM horses
     JOIN breeds ON horses.breed_id = breeds.id
-    JOIN types ON horses.type_id = types.id
     JOIN riders ON horses.rider_id = riders.id
     WHERE ${columnName} = $1
     `,
@@ -80,13 +73,13 @@ async function filterHorsesBy(column, id) {
   return rows;
 }
 
-async function addHorse(name, breed_id, type_id, age, rider_id, image_url) {
+async function addHorse(name, breed_id, age, rider_id, image_url) {
   await pool.query(
     `INSERT INTO horses 
-      (name, breed_id, type_id, age, rider_id, image_url, admin_created) 
+      (name, breed_id, age, rider_id, image_url, admin_created) 
      VALUES 
       ($1, $2, $3, $4, $5, $6, FALSE)`,
-    [name, breed_id, type_id, age, rider_id, image_url]
+    [name, breed_id, age, rider_id, image_url]
   );
 }
 

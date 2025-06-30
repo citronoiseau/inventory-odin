@@ -51,7 +51,6 @@ const filterHorses = asyncHandler(async (req, res) => {
   const validTypes = {
     breeds: "breed",
     riders: "rider",
-    types: "type",
   };
 
   const column = validTypes[type];
@@ -82,9 +81,6 @@ const validateHorse = [
   body("breed_id")
     .isInt({ min: 1 })
     .withMessage("Breed is required and must be a valid ID"),
-  body("type_id")
-    .isInt({ min: 1 })
-    .withMessage("Type is required and must be a valid ID"),
   body("age")
     .isInt({ min: 3, max: 50 })
     .withMessage("Age must be between 3 and 50"),
@@ -103,12 +99,11 @@ const addHorse = [
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { name, breed_id, type_id, age, rider_id, image_url } = req.body;
+    const { name, breed_id, age, rider_id, image_url } = req.body;
 
     await db.addHorse(
       name,
       parseInt(breed_id, 10),
-      parseInt(type_id, 10),
       parseInt(age, 10),
       parseInt(rider_id, 10),
       image_url
