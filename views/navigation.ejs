@@ -1,0 +1,31 @@
+<div class="navigation">
+  <div class="breeds-container">
+    <div>Check out our breeds:</div>
+    <div class="breeds-list">
+      <% if (!breeds || breeds.length === 0) { %>
+      <p>No breeds found.</p>
+      <% } else { %> <% breeds.forEach((breed) => { %>
+      <div class="breed-type">
+        <a href="/filter/breeds/<%= breed.id %>"><%= breed.name %></a>
+        <button>Delete</button>
+      </div>
+      <% }); %> <% } %>
+
+      <button><a href="/breeds/edit">Edit Breeds</a></button>
+      <button><a href="/breeds/add">Add new breed</a></button>
+    </div>
+  </div>
+
+  <div class="riders-container">
+    <div>Check out our riders:</div>
+    <div class="riders-list">
+      <% if (!riders || riders.length === 0) { %>
+      <p>No riders found.</p>
+      <% } else { %> <% riders.forEach((rider) => { %>
+      <a href="/filter/riders/<%= rider.id %>"><%= rider.name %></a>
+      <% }); %> <% } %>
+      <button><a href="/riders/edit">Edit Riders</a></button>
+      <button><a href="/riders/add">Add new rider</a></button>
+    </div>
+  </div>
+</div>

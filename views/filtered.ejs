@@ -4,10 +4,16 @@
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <div class="horses-container">
-      <% horses.forEach((horse) => { %> <%- include('horses/horse', { horse:
-      horse}) %> <% }); %>
+    <div class="left-side">
+      <h1><%= title %></h1>
+      <h2>Horses</h2>
+      <%- include('navigation.ejs', { breeds, riders}) %>
+    </div>
+    <div class="right-side">
+      <div class="horses-container">
+        <% horses.forEach((horse) => { %> <%- include('horses/horse', { horse:
+        horse}) %> <% }); %>
+      </div>
     </div>
     <a href="/">Go back</a>
   </body>

@@ -4,18 +4,22 @@
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <h2>Horses</h2>
-    <%- include('filters/breeds.ejs', { breeds }) %>
-     <%- include('filters/riders.ejs', { riders }) %>
-    <div>
-      <button><a href="/horse/add">Add a new horse</a></button>
+    <div class="left-side">
+      <h1><%= title %></h1>
+      <h2>Horses</h2>
+      <%- include('navigation.ejs', { breeds, riders}) %>
     </div>
-    <div class="horses-container">
-      <% horses.forEach((horse) => { %> <%- include('horses/horse', { horse:
-      horse}) %> <% }); %>
+
+    <div class="right-side">
+      <div>
+        <button><a href="/horse/add">Add a new horse</a></button>
+      </div>
+      <div class="horses-container">
+        <% horses.forEach((horse) => { %> <%- include('horses/horse', { horse:
+        horse}) %> <% }); %>
+      </div>
     </div>
-        <%- include('horses/delete-dialog.ejs') %>
-        <%- include('horses/edit-dialog.ejs') %>
+    <%- include('horses/delete-dialog.ejs') %> <%-
+    include('horses/edit-dialog.ejs') %>
   </body>
 </html>

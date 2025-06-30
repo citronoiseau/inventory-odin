@@ -1,3 +1,7 @@
+body {
+  display: flex;
+}
+
 .horses-container {
   display: flex;
   flex-wrap: wrap;
