@@ -14,12 +14,6 @@
     >
       Edit (Admin)
     </button>
-    <% } else { %>
-    <form action="/horse/<%= horse.id %>/edit" method="GET">
-      <button type="submit">Edit</button>
-    </form>
-
-    <% } %> <% if (horse.admin_created) { %>
     <button
       class="delete-btn-admin"
       data-horse-id="<%= horse.id %>"
@@ -28,6 +22,9 @@
       Delete (Admin)
     </button>
     <% } else { %>
+    <form action="/horse/<%= horse.id %>/edit" method="GET">
+      <button type="submit">Edit</button>
+    </form>
     <form
       action="/horse/<%= horse.id %>/delete"
       method="POST"
