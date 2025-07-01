@@ -1,5 +1,31 @@
 body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+}
+.main {
+  min-height: 100vh;
   display: flex;
+}
+.left-side,
+.right-side {
+  height: 100vh;
+  overflow-y: auto;
+}
+.left-side {
+  border-right: 1px solid #e3e3e3;
+  background-color: #333;
+  color: #fff;
+  padding: 0px 0px 0px 20px;
+  flex: 1 1 15%;
+  display: flex;
+  flex-direction: column;
+}
+
+.right-side {
+  flex: 4 1 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .horses-container {
@@ -9,16 +35,105 @@ body {
   align-items: center;
   justify-content: center;
 }
-
-.image-container {
-  width: 300px;
-  height: 200px;
+.horse-card {
+  width: 280px;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  margin: 12px;
 }
 
-.image-container img {
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+}
+
+.image-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.image-wrapper:hover img {
+  transform: scale(1.05);
+}
+
+.icon-buttons {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  gap: 8px;
+  z-index: 2;
+}
+
+.icon-btn {
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 6px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.icon-btn:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.horse-info {
+  padding: 12px 16px;
+  text-align: center;
+}
+
+.horse-name {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.horse-details {
+  margin-top: 4px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.action-container {
+  display: flex;
+  gap: 10px;
+}
+.action-container button {
+  width: 100px;
+  height: 40px;
+  border: none;
+  border-radius: 12px;
+  background-color: #d56312;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease,
+    box-shadow 0.2s ease;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
+}
+
+.action-container button:hover {
+  background-color: #bf5206;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.action-container button:active {
+  background-color: #a84705;
+  transform: scale(0.98);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
 }

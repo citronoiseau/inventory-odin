@@ -1,37 +1,52 @@
-<div class="horse">
-  <div>
-    <%= horse.name %> — Breed: <%= horse.breed %> — Age: <%= horse.age %>
-  </div>
-  <div class="image-container">
+<div class="horse-card">
+  <div class="image-wrapper">
     <img src="<%= horse.image_url %>" alt="<%= horse.name %>" />
+    <div class="icon-buttons">
+      <% if (horse.admin_created) { %>
+      <button
+        class="icon-btn edit-btn-admin"
+        data-horse-id="<%= horse.id %>"
+        data-horse-name="<%= horse.name %>"
+        title="Edit"
+        aria-label="Edit"
+      >
+        ✏️
+      </button>
+      <button
+        class="icon-btn delete-btn-admin"
+        data-horse-id="<%= horse.id %>"
+        data-horse-name="<%= horse.name %>"
+        title="Delete"
+        aria-label="Delete"
+      >
+        🗑️
+      </button>
+      <% } else { %>
+      <form action="/horse/<%= horse.id %>/edit" method="GET">
+        <button class="icon-btn" type="submit" title="Edit" aria-label="Edit">
+          ✏️
+        </button>
+      </form>
+      <form
+        action="/horse/<%= horse.id %>/delete"
+        method="POST"
+        onsubmit="return confirm('Delete this horse?')"
+      >
+        <button
+          class="icon-btn"
+          type="submit"
+          title="Delete"
+          aria-label="Delete"
+        >
+          🗑️
+        </button>
+      </form>
+      <% } %>
+    </div>
   </div>
-  <div class="action-container">
-    <% if (horse.admin_created) { %>
-    <button
-      class="edit-btn-admin"
-      data-horse-id="<%= horse.id %>"
-      data-horse-name="<%= horse.name %>"
-    >
-      Edit (Admin)
-    </button>
-    <button
-      class="delete-btn-admin"
-      data-horse-id="<%= horse.id %>"
-      data-horse-name="<%= horse.name %>"
-    >
-      Delete (Admin)
-    </button>
-    <% } else { %>
-    <form action="/horse/<%= horse.id %>/edit" method="GET">
-      <button type="submit">Edit</button>
-    </form>
-    <form
-      action="/horse/<%= horse.id %>/delete"
-      method="POST"
-      onsubmit="return confirm('Delete this horse?')"
-    >
-      <button type="submit">Delete</button>
-    </form>
-    <% } %>
+
+  <div class="horse-info">
+    <h3 class="horse-name"><%= horse.name %></h3>
+    <p class="horse-details"><%= horse.breed %>, <%= horse.age %></p>
   </div>
 </div>
