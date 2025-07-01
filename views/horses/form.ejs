@@ -4,8 +4,13 @@
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <a href="/"><button>Go back</button></a>
+       <div class="left-side">
+      <h1><%= title %></h1>
+      <h2>Horses</h2>
+      <%- include('../navigation.ejs', { breeds }) %>
+    </div>
+    <div class="right-side"> 
+          <a href="/">Go back</a>
     <form method="POST" action="<%= horse ? `/horse/${horse.id}/edit` : '/horse/add' %>">
       <h2>Horse Form</h2>
       <div class="form-input">
@@ -50,7 +55,8 @@
     />
   </div>
 
-      <input type="submit" value="<%= horse ? 'Edit Horse' : 'Add Horse' %>" />
+      <input type="submit" value="<%= horse ? 'Confirm' : 'Add Horse' %>" />
     </form>
+    </div>
   </body>
 </html>
