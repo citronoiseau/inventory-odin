@@ -10,7 +10,7 @@
       <%- include('../navigation.ejs', { breeds }) %>
     </div>
     <div class="right-side"> 
-          <a href="/">Go back</a>
+          <a href="/">Cancel</a>
     <form method="POST" action="<%= horse ? `/horse/${horse.id}/edit` : '/horse/add' %>">
       <h2>Horse Form</h2>
       <div class="form-input">
