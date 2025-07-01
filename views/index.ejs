@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
+    <div class="main">
     <div class="left-side">
       <h1>Perfect Stable</h1>
       <h2>Horses</h2>
@@ -11,26 +12,26 @@
     </div>
 
     <div class="right-side">
-      <% if (breed) { %>
+    <div class="links">
+        <a href="/">Homepage</a>
+        <a href="/horse/add">Add new horse</a>
+    </div>
+          <% if (breed) { %>
           <%- include('breeds/filtered.ejs', { breed }) %>
       <% } %>
-    <div>
-        <a href="/horse/add">Add new horse</a>
-        <a href="/">Homepage</a>
-
-        <% if (horses && horses.length > 0) { %>
-          <div class="horses-container">
-            <% horses.forEach((horse) => { %>
-              <%- include('horses/horse', { horse: horse }) %>
-            <% }); %>
-          </div>
-          <% } else { %>
-              <div>No horses found</div>
-          <% } %>
-        </div>
+       <% if (horses && horses.length > 0) { %>
+         <div class="horses-container">
+           <% horses.forEach((horse) => { %>
+             <%- include('horses/horse', { horse: horse }) %>
+           <% }); %>
+         </div>
+         <% } else { %>
+             <div>No horses found</div>
+         <% } %>
     <%- include('horses/delete-dialog.ejs') %> 
     <%-include('breeds/delete-dialog.ejs') %>
     <%-include('horses/edit-dialog.ejs') %>
     <%-include('breeds/edit-dialog.ejs') %>
+    </div>
   </body>
 </html>
