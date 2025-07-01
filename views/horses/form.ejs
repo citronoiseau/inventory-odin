@@ -39,19 +39,6 @@
         
       </div>
 
-  <div class="form-input">
-    <label for="rider_id">Choose the rider:</label>
-    <select name="rider_id" id="rider_id" required>
-      <option value="">Select the rider</option>
-      <% riders.forEach((rider) => { %>
-        <option value="<%= rider.id %>" <%= horse && horse.rider_id == rider.id ? 'selected' : '' %>>
-          <%= rider.name %>
-        </option>
-      <% }); %>
-    </select>
-  </div>
-
-
       <div class="form-input">
     <label for="image_url">Enter URL for your image:</label>
     <input

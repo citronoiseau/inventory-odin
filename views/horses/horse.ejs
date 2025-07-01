@@ -1,13 +1,11 @@
 <div class="horse">
   <div>
-    <%= horse.name %> — Breed: <%= horse.breed %> — Age: <%= horse.age %> —
-    Rider: <%= horse.rider %>
+    <%= horse.name %> — Breed: <%= horse.breed %> — Age: <%= horse.age %>
   </div>
   <div class="image-container">
     <img src="<%= horse.image_url %>" alt="<%= horse.name %>" />
   </div>
   <div class="action-container">
-
     <% if (horse.admin_created) { %>
     <button
       class="edit-btn-admin"
@@ -18,7 +16,7 @@
     </button>
     <% } else { %>
     <form action="/horse/<%= horse.id %>/edit" method="GET">
-      <button type="submit">Edit </button>
+      <button type="submit">Edit</button>
     </form>
 
     <% } %> <% if (horse.admin_created) { %>
