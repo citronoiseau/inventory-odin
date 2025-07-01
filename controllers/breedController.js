@@ -1,19 +1,35 @@
 const asyncHandler = require("express-async-handler");
+const { body, validationResult } = require("express-validator");
 const db = require("../db/queries/breed-queries");
 
-const addBreed = asyncHandler(async (req, res) => {
-  const { breed_name } = req.body;
+const validateBreed = [
+  body("name")
+    .trim()
+    .isLength({ min: 2, max: 15 })
+    .withMessage("Breed name must be 2 to 15 characters"),
+];
 
-  await db.addBreed(breed_name);
+const addBreed = [
+  ...validateBreed,
+  async (req, res) => {
+    console.log("Received form data:", req.body);
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    const { name } = req.body;
 
-  res.redirect("/");
-});
+    await db.addBreed(name);
+
+    res.redirect("/");
+  },
+];
 
 const deleteBreed = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const { passcode } = req.body;
 
-  const horse = await db.getHorseById(id);
+  const horse = await db.getBreedById(id);
   if (!horse) {
     return res.status(404).send("Horse not found");
   }

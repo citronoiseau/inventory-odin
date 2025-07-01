@@ -14,7 +14,22 @@ async function deleteBreed(id) {
   await pool.query(`DELETE FROM breeds WHERE id = $1`, [id]);
 }
 
+async function getBreedById(id) {
+  const { rows } = await pool.query(
+    `
+    SELECT 
+      breeds.id,
+      breeds.name
+    FROM breeds
+    WHERE breeds.id = $1
+    `,
+    [id]
+  );
+  return rows[0];
+}
+
 module.exports = {
   addBreed,
   deleteBreed,
+  getBreedById,
 };
