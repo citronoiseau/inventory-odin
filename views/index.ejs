@@ -5,20 +5,29 @@
   </head>
   <body>
     <div class="left-side">
-      <h1><%= title %></h1>
+      <h1>Perfect Stable</h1>
       <h2>Horses</h2>
-      <%- include('navigation.ejs', { breeds, riders}) %>
+      <%- include('navigation.ejs', { breeds }) %>
     </div>
 
     <div class="right-side">
-      <div>
-        <button><a href="/horse/add">Add a new horse</a></button>
-      </div>
-      <div class="horses-container">
-        <% horses.forEach((horse) => { %> <%- include('horses/horse', { horse:
-        horse}) %> <% }); %>
-      </div>
-    </div>
+      <% if (breed) { %>
+          <%- include('breeds/filtered.ejs', { breed }) %>
+      <% } %>
+    <div>
+        <a href="/horse/add">Add new horse</a>
+        <a href="/">Homepage</a>
+
+        <% if (horses && horses.length > 0) { %>
+          <div class="horses-container">
+            <% horses.forEach((horse) => { %>
+              <%- include('horses/horse', { horse: horse }) %>
+            <% }); %>
+          </div>
+          <% } else { %>
+              <div>No horses found</div>
+          <% } %>
+        </div>
     <%- include('horses/delete-dialog.ejs') %> <%-
     include('horses/edit-dialog.ejs') %>
   </body>
