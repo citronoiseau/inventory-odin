@@ -1,6 +1,5 @@
 const asyncHandler = require("express-async-handler");
-const CustomNotFoundError = require("../errors/CustomNotFoundError");
-const db = require("../db/queries/horse-queries");
+const db = require("../db/queries/breed-queries");
 
 const addBreed = asyncHandler(async (req, res) => {
   const { breed_name } = req.body;
