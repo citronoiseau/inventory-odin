@@ -3,13 +3,29 @@
   <div class="action-container">
     <% if (breed.name !== 'No breed') { %> <% if (breed.admin_created) { %>
     <button
+      class="edit-breed-btn-admin"
+      data-breed-id="<%= breed.id %>"
+      data-breed-name="<%= breed.name %>"
+      data-breed-admin="<%= breed.admin_created %>"
+    >
+      Edit (Admin)
+    </button>
+    <button
       class="delete-breed-btn-admin"
-      data-horse-id="<%= breed.id %>"
-      data-horse-name="<%= breed.name %>"
+      data-breed-id="<%= breed.id %>"
+      data-breed-name="<%= breed.name %>"
     >
       Delete (Admin)
     </button>
     <% } else { %>
+    <button
+      class="edit-breed-btn-admin"
+      data-breed-id="<%= breed.id %>"
+      data-breed-name="<%= breed.name %>"
+      data-breed-admin="<%= breed.admin_created %>"
+    >
+      Edit
+    </button>
     <form
       action="/breed/<%= breed.id %>/delete"
       method="POST"

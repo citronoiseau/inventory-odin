@@ -27,16 +27,16 @@ const addBreed = [
 
 const deleteBreed = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  const { passcode } = req.body;
+  const { breed_passcode } = req.body;
 
-  const horse = await db.getBreedById(id);
-  if (!horse) {
-    return res.status(404).send("Horse not found");
+  const breed = await db.getBreedById(id);
+  if (!breed) {
+    return res.status(404).send("Breed not found");
   }
 
-  if (horse.admin_created) {
+  if (breed.admin_created) {
     const correctPasscode = process.env.ADMIN_PASSCODE;
-    if (!passcode || passcode !== correctPasscode) {
+    if (!breed_passcode || breed_passcode !== correctPasscode) {
       return res.status(403).send("Invalid or missing passcode");
     }
   }
@@ -45,7 +45,36 @@ const deleteBreed = asyncHandler(async (req, res) => {
   return res.redirect("/");
 });
 
+const editBreed = [
+  ...validateBreed,
+  async (req, res) => {
+    console.log("Received form data:", req.body);
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    const { id } = req.params;
+    const { name, breedEditPasscode } = req.body;
+
+    const breed = await db.getBreedById(id);
+    if (!breed) {
+      return res.status(404).send("Breed not found");
+    }
+    if (breed.admin_created) {
+      const correctPasscode = process.env.ADMIN_PASSCODE;
+      if (!breedEditPasscode || breedEditPasscode !== correctPasscode) {
+        return res.status(403).send("Invalid or missing passcode");
+      }
+    }
+
+    await db.editBreed(id, name);
+
+    res.redirect("/");
+  },
+];
+
 module.exports = {
   addBreed,
   deleteBreed,
+  editBreed,
 };

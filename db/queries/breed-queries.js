@@ -28,8 +28,21 @@ async function getBreedById(id) {
   return rows[0];
 }
 
+async function editBreed(id, name) {
+  await pool.query(
+    `
+    UPDATE breeds
+    SET 
+      name = $1
+    WHERE id = $2
+    `,
+    [name, id]
+  );
+}
+
 module.exports = {
   addBreed,
   deleteBreed,
   getBreedById,
+  editBreed,
 };

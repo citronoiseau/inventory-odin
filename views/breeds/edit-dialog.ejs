@@ -1,0 +1,65 @@
+<dialog id="edit-breed-dialog">
+  <form method="POST" id="breed-edit-form">
+    <h2>Confirm Edit</h2>
+    <div class="form-input">
+      <label for="name">Name (2 to 15 characters):</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        required
+        minlength="2"
+        maxlength="15"
+        value="<%= breed ? breed.name : '' %>"
+      />
+    </div>
+
+    <% if (breed && breed.admin_created) { %>
+    <div class="form-input">
+      <label for="breedEditPasscode">Admin passcode:</label>
+      <input
+        type="password"
+        id="breed-edit-passcode"
+        name="breedEditPasscode"
+        required
+      />
+    </div>
+    <% } %>
+
+    <button type="button" id="cancel-breed-edit-button">Cancel</button>
+    <button type="submit">Confirm</button>
+  </form>
+</dialog>
+
+<script>
+  const breedEditDialog = document.getElementById("edit-breed-dialog");
+  const closeEditBreedButton = breedEditDialog.querySelector(
+    "#cancel-breed-edit-button"
+  );
+  const editBreedBtn = document.querySelector(".edit-breed-btn-admin");
+
+  if (editBreedBtn) {
+    editBreedBtn.addEventListener("click", () => {
+      const breedId = editBreedBtn.dataset.breedId;
+      const breedName = editBreedBtn.dataset.breedName;
+      const isAdmin = editBreedBtn.dataset.breedAdmin === "true";
+
+      const form = breedEditDialog.querySelector("#breed-edit-form");
+      form.action = `/breed/${breedId}/edit`;
+
+      breedEditDialog.querySelector(
+        "h2"
+      ).textContent = `Confirm edit for ${breedName}`;
+
+      breedEditDialog.showModal();
+    });
+
+    closeEditBreedButton.addEventListener("click", () => {
+      breedEditDialog.close();
+    });
+
+    breedEditDialog.addEventListener("cancel", () => {
+      breedEditDialog.close();
+    });
+  }
+</script>
