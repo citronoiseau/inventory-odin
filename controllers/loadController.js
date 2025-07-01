@@ -14,7 +14,7 @@ const getAllHorses = asyncHandler(async (req, res) => {
   if (!horses) {
     throw new CustomNotFoundError("No horses found");
   }
-  res.render("index", { title: "Perfect Stable", horses, breed: null });
+  res.render("index", { horses, breed: null });
 });
 
 const filterHorses = asyncHandler(async (req, res) => {
@@ -23,7 +23,7 @@ const filterHorses = asyncHandler(async (req, res) => {
   const horses = await db.filterHorses(id);
 
   if (!horses || horses.length === 0) {
-    return res.status(404).send("No horses found");
+    res.render("index", { horses: null, breed: null });
   }
 
   const breedName = horses[0].breed;
@@ -31,7 +31,6 @@ const filterHorses = asyncHandler(async (req, res) => {
   const adminCreated = horses[0].breed_admin_created;
 
   res.render("index", {
-    title: `Perfect Stable`,
     horses,
     breed: { id: breedId, name: breedName, admin_created: adminCreated },
   });

@@ -1,0 +1,22 @@
+<div class="filter-container">
+  <h3><%= breed.name %></h3>
+  <div class="action-container">
+    <% if (breed.name !== 'No breed') { %> <% if (breed.admin_created) { %>
+    <button
+      class="delete-breed-btn-admin"
+      data-horse-id="<%= breed.id %>"
+      data-horse-name="<%= breed.name %>"
+    >
+      Delete (Admin)
+    </button>
+    <% } else { %>
+    <form
+      action="/breed/<%= breed.id %>/delete"
+      method="POST"
+      onsubmit="return confirm('Delete this breed?')"
+    >
+      <button type="submit">Delete</button>
+    </form>
+    <% } %> <% } %>
+  </div>
+</div>
