@@ -10,9 +10,11 @@ const {
 const horseRouter = Router();
 
 horseRouter.get("/add", (req, res) => {
-  res.render("/form", { title: "Add new horse", horse: null });
+  res.render("horses/form", { title: "Add new horse", horse: null });
 });
+
 horseRouter.post("/add", addHorse);
+
 horseRouter.post("/:id/delete", deleteHorse);
 
 horseRouter.post("/:id/edit-auth", authEditHorse);

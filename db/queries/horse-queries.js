@@ -23,9 +23,9 @@ async function getHorseById(id) {
 async function addHorse(name, breed_id, age, image_url) {
   await pool.query(
     `INSERT INTO horses 
-      (name, breed_id, age image_url, admin_created) 
+      (name, breed_id, age, image_url, admin_created) 
      VALUES 
-      ($1, $2, $3, $4, $5, FALSE)`,
+      ($1, $2, $3, $4, FALSE)`,
     [name, breed_id, age, image_url]
   );
 }
