@@ -1,37 +1,37 @@
 <dialog id="delete-breed-dialog">
-  <form method="POST" id="delete-form">
+  <form method="POST" id="breed-delete-form">
     <h2>Confirm Delete</h2>
-    <label for="passcode">Admin passcode:</label>
-    <input type="password" id="passcode" name="passcode" required />
+    <label for="breed_passcode"">Admin passcode:</label>
+    <input type="password" id="breed_passcode" name="breed_passcode" required />
     <button value="cancel" type="reset" id="cancel-breed-button">Cancel</button>
     <button type="submit">Confirm Delete</button>
   </form>
 </dialog>
 
 <script>
-  const dialog = document.getElementById("delete=breed-dialog");
-  const closeButton = dialog.querySelector("#cancel-breed-button");
+  const breedDeleteDialog = document.getElementById("delete-breed-dialog");
+  const closeDeleteBreedButton = breedDeleteDialog.querySelector("#cancel-breed-button");
+  const deleteBreedBtn = document.querySelector(".delete-breed-btn-admin");
+    if (deleteBreedBtn) {
+       deleteBreedBtn.addEventListener("click", () => {
+        const breedId = deleteBreedBtn.dataset.breedId;
+        const breedName = deleteBreedBtn.dataset.breedName;
+        const form = breedDeleteDialog.querySelector("#breed-delete-form");
+        form.action = `/breed/${breedId}/delete`;
 
-  document.querySelectorAll(".delete-breed-btn-admin").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const breedId = btn.dataset.breedId;
-      const breedName = btn.dataset.breedName;
-      const form = dialog.querySelector("#delete-form");
-      form.action = `/breed/${breedId}/delete`;
+        breedDeleteDialog.querySelector(
+          "h2"
+        ).textContent = `Confirm delete for ${breedName}`;
 
-      dialog.querySelector(
-        "h2"
-      ).textContent = `Confirm delete for ${breedName}`;
-
-      dialog.showModal();
+        breedDeleteDialog.showModal();
+      });
+            closeDeleteBreedButton.addEventListener("click", () => {
+      breedDeleteDialog.close();
     });
-  });
+     
+    breedDeleteDialog.addEventListener("cancel", () => {
+      breedDeleteDialog.close();
+    });
+    }
 
-  closeButton.addEventListener("click", () => {
-    dialog.close();
-  });
-
-  dialog.addEventListener("cancel", () => {
-    dialog.close();
-  });
 </script>
