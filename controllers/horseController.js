@@ -73,7 +73,7 @@ const authEditHorse = asyncHandler(async (req, res) => {
 
   const correctPasscode = process.env.ADMIN_PASSCODE;
   if (!passcode || passcode !== correctPasscode) {
-    return res.status(403).send("Invalid passcode");
+    return res.status(403).render("403", { title: "Incorrect passcode" });
   }
   return res.render("horses/form", { title: "Edit Horse", horse });
 });

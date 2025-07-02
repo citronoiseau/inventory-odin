@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <title>Homepage</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="main">
+    <div class="left-side">
+      <h1>Perfect Stable</h1>
+      <h2>Horses</h2>
+      <%- include('navigation.ejs', { breeds }) %>
+    </div>
+
+    <div class="right-side">
+    <div class="links">
+        <a href="/">Homepage</a>
+        <a href="/horse/add">Add new horse</a>
+    </div>
+    <h3> <%= title %> </h3>
+  </body>
+</html>

@@ -63,7 +63,7 @@ const editBreed = [
     if (breed.admin_created) {
       const correctPasscode = process.env.ADMIN_PASSCODE;
       if (!breedEditPasscode || breedEditPasscode !== correctPasscode) {
-        return res.status(403).send("Invalid or missing passcode");
+        return res.status(403).render("403", { title: "Incorrect passcode" });
       }
     }
 
