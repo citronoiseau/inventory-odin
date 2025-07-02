@@ -11,7 +11,10 @@
         <%- include('../navigation.ejs', { breeds }) %>
       </div>
           <div class="right-side"> 
-          <a href="/">Homepage</a>
+              <div class="links">
+        <a href="/">Homepage</a>
+        <a href="/horse/add">Add new horse</a>
+    </div>
       <form method="POST" action="/breed/add">
         <h2>Horse Form</h2>
         <div class="form-input">

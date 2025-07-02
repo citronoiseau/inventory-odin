@@ -16,6 +16,15 @@
         <a href="/">Homepage</a>
         <a href="/horse/add">Add new horse</a>
     </div>
+<div class="information">
+  <h3>Information</h3>
+  <div>
+    You can edit or delete premade horses and breeds using the secret password. Horses and breeds created by users can be freely edited or deleted.
+  </div>
+  <div>
+    To get the secret password, translate this phrase: <em>J'aime les chevaux</em> (no spaces, no capital letters).
+  </div>
+</div>
           <% if (breed) { %>
           <%- include('breeds/filtered.ejs', { breed }) %>
       <% } %>

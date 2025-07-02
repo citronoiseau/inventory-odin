@@ -1,5 +1,5 @@
 <dialog id="edit-breed-dialog">
-  <form method="POST" id="breed-edit-form">
+  <form method="POST" id="breed-edit-form" class="modal-form">
     <h2>Confirm Edit</h2>
     <div class="form-input">
       <label for="name">Name (2 to 15 characters):</label>
@@ -25,9 +25,17 @@
       />
     </div>
     <% } %>
-
-    <button type="button" id="cancel-breed-edit-button">Cancel</button>
-    <button type="submit">Confirm</button>
+    <div class="dialog-buttons">
+      <button
+        type="button"
+        type="reset"
+        class="cancel-button"
+        id="cancel-breed-edit-button"
+      >
+        Cancel
+      </button>
+      <button type="submit" class="confirm-button">Confirm</button>
+    </div>
   </form>
 </dialog>
 

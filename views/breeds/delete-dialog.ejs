@@ -1,10 +1,12 @@
 <dialog id="delete-breed-dialog">
-  <form method="POST" id="breed-delete-form">
+  <form method="POST" id="breed-delete-form"  class="modal-form">
     <h2>Confirm Delete</h2>
     <label for="breed_passcode"">Admin passcode:</label>
     <input type="password" id="breed_passcode" name="breed_passcode" required />
-    <button value="cancel" type="reset" id="cancel-breed-button">Cancel</button>
-    <button type="submit">Confirm Delete</button>
+   <div class="dialog-buttons">
+    <button value="cancel" type="reset" id="cancel-breed-button" type="reset" class="cancel-button">Cancel</button>
+    <button type="submit" class="confirm-button">Confirm Delete</button>
+   </div>
   </form>
 </dialog>
 

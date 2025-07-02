@@ -1,10 +1,19 @@
 <dialog id="edit-dialog">
-  <form method="POST" id="edit-form">
+  <form method="POST" id="edit-form" class="modal-form">
     <h2>Confirm Edit</h2>
     <label for="edit-passcode">Admin passcode:</label>
     <input type="password" id="edit-passcode" name="passcode" required />
-    <button type="button" id="cancel-edit-button">Cancel</button>
-    <button type="submit">Continue</button>
+    <div class="dialog-buttons">
+      <button
+        type="button"
+        type="reset"
+        class="cancel-button"
+        id="cancel-edit-button"
+      >
+        Cancel
+      </button>
+      <button type="submit" class="confirm-button">Continue</button>
+    </div>
   </form>
 </dialog>
 

@@ -41,12 +41,16 @@
           🗑️
         </button>
       </form>
+
       <% } %>
     </div>
   </div>
 
   <div class="horse-info">
     <h3 class="horse-name"><%= horse.name %></h3>
-    <p class="horse-details"><%= horse.breed %>, <%= horse.age %></p>
+    <p class="horse-details">
+      <%= horse.breed %>, <%= horse.age %>, <% if (horse.admin_created) { %>
+      Admin <% } else { %> User <% } %>
+    </p>
   </div>
 </div>
